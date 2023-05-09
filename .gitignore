@@ -2,5 +2,5 @@
 .env
 /web
 __pycache__
-data.db
-/data.db
+d1ata.db
+/1data.db
