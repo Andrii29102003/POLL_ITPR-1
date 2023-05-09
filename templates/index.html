@@ -1,0 +1,23 @@
+{% extends 'base_join_create.html' %}
+{% block title %}
+	<title>Join Poll</title>
+{% endblock %}
+
+{% block content %}
+    <div class="join_poll_back">
+        <h1 class="active texto_center">ПРОЙТИ ОПИТУВАННЯ</h1>
+        <form method="POST" action="/take_poll">
+            <input type="text" class="text" name="username">
+            <span>Ім'я користувача</span>
+            <br><br>
+            
+            <input type="text" class="text" name="ask_id">
+            <span>Код опитування</span>
+            <button class="signin" type="submit">Пройти опитування</button>
+            <hr>
+        </form>
+
+        <a class="texto_to_create" href="{{url_for('create')}}">Не маєте опитування? Створити.</a>
+    </div>
+
+{% endblock %}

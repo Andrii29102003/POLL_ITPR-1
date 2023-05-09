@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_result.css') }}">
+    <title>Pie Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="main-div">
+        <h2 class="headtext">РЕЗУЛЬТАТИ ОПИТУВАННЯ</h2>
+        {% for image, scores in data.items() %}
+            <div class="ask-div">
+                <img src="{{ urls[loop.index-1] }}" alt="Image">
+                <section id="diagram-{{ loop.index }}" class="diagram"></section>
+                <button type="button" class='mark-button' disabled="true">{{ avgMark[loop.index] }}</button>
+            </div>
+    
+            <script>
+                function drawDiagram(canvasId, data, percentages_data, loopIndex) {
+                    const diagram = document.getElementById(canvasId);
+                    // const canvasWidth = diagram.width;
+                    // const canvasHeight = diagram.height;
+                    const canvasWidth = 400;
+                    const canvasHeight = 50;
+    
+                    // Calculate the total sum of values
+                    const totalSum = Object.values(data).reduce((a, b) => a + b, 0);
+    
+                    // Calculate the width of each section based on the values
+                    const sectionWidths = {};
+                    for (const key in data) {
+                        const value = data[key];
+                        const widthPercentage = (value / totalSum) * 100;
+                        sectionWidths[key] = (canvasWidth * widthPercentage) / 100;
+                    }
+
+                    const sectionLabels = {};
+                    var perc_data = percentages_data[loopIndex];
+                    for (const key in perc_data) {
+                        const value = perc_data[key] + '%';
+                        sectionLabels[key] = value;
+                    }
+    
+                    // Set the colors for each section
+                    const sectionColors = {
+                        1: "#ADB5BD",
+                        2: "#6C757D",
+                        3: "#495057",
+                        4: "#343A40",
+                        5: "#212529"
+                    };
+
+                    // Draw the diagram sections
+                    for (const key in sectionWidths) {
+                        const sectionWidth = sectionWidths[key];
+                        const sectionColor = sectionColors[key];
+                        const sectionLabel = sectionLabels[key];
+
+                        const rectangle = document.createElement("div");
+                        rectangle.innerHTML = sectionLabel;
+                        rectangle.classList.add("rectangle");
+                        rectangle.style.width = sectionWidth+"px";
+                        rectangle.style.backgroundColor = sectionColor;
+                        diagram.appendChild(rectangle);
+
+                    }
+                }
+    
+                document.addEventListener("DOMContentLoaded", function() {
+                    const data = {{ scores }};
+                    const percentages_data = {{ percentages_data }}; 
+                    const loopIndex = {{ loop.index }};
+                    drawDiagram("diagram-{{ loop.index }}", data, percentages_data, loopIndex);
+                });
+            </script>
+        {% endfor %}
+    </div>
+    <h3 class="headtext">Кількість проходжень опитування: <span id="scoreCount"></span></h3>
+
+    <script>
+      // Assuming `scores` is an array
+      var scores = {{data}}
+      console.log(scores)
+      var values = scores[1]; // Select the values of scores[1]
+      var sum = 0;
+      for (var key in values) {
+        sum += values[key];
+      }
+      console.log(sum)
+    
+      // Update the HTML element with the score count
+      document.getElementById('scoreCount').textContent = sum;
+    </script>
+
+    <div id="colorIndication1">
+        <!-- Color indications will be dynamically added here -->
+      </div>
+      
+      <script>
+        const sectionColors = {
+          1: "#ADB5BD",
+          2: "#6C757D",
+          3: "#495057",
+          4: "#343A40",
+          5: "#212529"
+        };
+      
+        // Get the container element to append color indications
+        const colorContainer = document.getElementById("colorIndication");
+      
+        // Loop through the sectionColors object and create color indications
+        for (const section in sectionColors) {
+          const color = sectionColors[section];
+          if section == 1{
+            const label = `${section} Бал`;}
+          else if section == 2 || ection == 3 || ection == 4{
+            const label = `${section} Бали`;}
+          else if section == 5 { 
+            const label = `${section} Балів`;}
+          else {console.log(1);}
+          // Create a color indication box with label
+          const colorBox = document.createElement("div");
+          colorBox.style.backgroundColor = color;
+          colorBox.style.width = "20px";
+          colorBox.style.height = "20px";
+          colorBox.style.display = "inline-block";
+          colorBox.style.marginRight = "10px";
+      
+          const colorLabel = document.createElement("span");
+          colorLabel.textContent = label;
+      
+          // Append the color indication to the container
+          colorContainer.appendChild(colorBox);
+          colorContainer.appendChild(colorLabel);
+        }
+      </script>
+      
+    
+        
+</body>
+</html>
