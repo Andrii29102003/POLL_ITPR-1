@@ -123,3 +123,12 @@ DIAGRAM STYLE
     margin: 10px;
 }
 
+/*######################
+COLORINDICATION STYLE
+######################*/
+
+#colorIndication {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
