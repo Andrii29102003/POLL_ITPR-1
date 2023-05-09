@@ -26,12 +26,15 @@
         <!-- Відправити -->
         <div name="ask-div">
         <input type="submit" id="submit" name="Відправити відповідь" >
+
         </div>
         </form>
         </div>
-
+        
 
         <script>
+            const submitButton = document.getElementById('submit');
+            submitButton.value = 'Відправити відповідь';
             const recordButton1 = document.querySelector('#recordButton1');
             const recordButton2 = document.querySelector('#recordButton2');
             const recordButton3 = document.querySelector('#recordButton3');
