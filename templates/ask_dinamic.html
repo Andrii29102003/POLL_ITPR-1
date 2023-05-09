@@ -3,30 +3,30 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_ask.css') }}">
         <meta charset="utf-8">
-        <title>
-            Опитування
-        </title>
+        <title>Опитування</title>
     </head>
 
     <body>
 
         <div class="main-div">
-        <h2 class="headtext">Привіт  {{people_name}}</h2>
+        <h2 class="headtext">Привіт, {{people_name}}!</h2>
 
         <h2 class="headtext">ОЦІНІТЬ ЗОБРАЖЕННЯ</h2>
         <form method="POST" action="{{ url_for('results', people_name=people_name) }}">
             {% for url in urls %}
             <div class="ask-div">
-                <img src="{{ url }}" alt="Image">
-              <input type="range" id="volume{{loop.index}}" name="volume{{ loop.index}}" min="1" max="5">
-                  <button id="recordButton{{loop.index}}" type="button" class = 'record-button'>Голосом</button>
+                <img src="{{ url }}" class="img" alt="Image">
+
+                <input type="range" id="volume{{loop.index}}" name="volume{{ loop.index}}" min="1" max="5">
+                <button id="recordButton{{loop.index}}" type="button" class='record-button'>Голосом</button>
             </div>
             {% endfor %}
 
-        <!-- Відправити -->
-        <div name="ask-div">
-        <input type="submit" id="submit" name="Відправити відповідь" >
-        </div>
+            <!-- Відправити -->
+            <div name="ask-div">
+                <input type="submit" id="submit" class="record-button" name="Відправити відповідь">
+                <!--button id="submit" type="button" class ='record-button'>Проголосувати</button-->
+            </div>
         </form>
         </div>
 
@@ -61,7 +61,6 @@
                         const keywords4 = ["чотири", "чотирьох", "чотирьом", "чотирма", "чотирьох", "чотири", "чотирьох", "чотирьом", "чотирма", "чотирьох", "чотири", "чотирьох", "чотирьом", "чотирма", "чотирьох",'Красива', 'Красивіша', 'Красивіші', 'Красивий', 'Красивого', 'Красивому', 'Красивим', 'Красивому', 'Красиві', 'Красивіші', 'Красивіших', 'Красивими', 'Чудова', 'Чудової', 'Чудовій', 'Чудову', 'Чудовим', 'Чудовому', 'Чудовими', 'Приваблива', 'Привабливої', 'Привабливій', 'Привабливу', 'Привабливим', 'Привабливому', 'Привабливі', 'Привабливіші', 'Привабливіших', 'Привабливими', 'Витончена', 'Витонченої', 'Витонченій', 'Витончену', 'Витонченим', 'Витонченому', 'Витонченими', 'Елегантна', 'Елегантної', 'Елегантній', 'Елегантну', 'Елегантним', 'Елегантному', 'Елегантними', 'Шикарна', 'Шикарної', 'Шикарній', 'Шикарну', 'Шикарним', 'Шикарному', 'Шикарними', 'Незвична', 'Незвичайна', 'Незвичайній', 'Незвичайну', 'Незвичайним', 'Незвичайному', 'Незвичайними', 'Таємнича', 'Таємничої', 'Таємничій', 'Таємничу', 'Таємничим', 'Таємничому', 'Таємничими', 'Розкішна', 'Розкішної', 'Розкішній', 'Розкішну', 'Розкішним', 'Розкішному', 'Розкішними', 'Незабутня', 'Незабутньої', 'Незабутній', 'Незабутню', 'Незабутнім', 'Незабутньому', 'Незабутніми'];
                         const keywords5 = ['п\'ять', 'п\'яти', 'п\'яти', 'п\'ять', 'п\'ятьма', 'п\'яти', 'п\'ятих', 'п\'яті', 'п\'ятьма', 'п\'яті', 'п\'ять','Вражаюча', 'неперевершена', 'неймовірна', 'божественна', 'бездоганна', 'фантастична', 'хвилююча', 'магічна', 'феноменальна', 'неземна'];
                         
-    
                         if (keywords1.some(keyword => recognizedText.toLowerCase().includes(keyword.toLowerCase()))) {
                             // execute code for keywords1
                             alert(`Ви сказали: ${recognizedText}`);
@@ -83,8 +82,8 @@
                             alert(`Ви сказали: ${recognizedText}`);
                             document.getElementById('volume'+buttonId).value=5;
                         } else {
-                            alert(`Ви сказали: ${recognizedText}`);
-                            alert("Помилка, повторіть");
+                            alert(`Ви сказали: ${recognizedText}.`);
+                            alert("Помилка, повторіть спробу!");
                         }
                     };
                     recognition.onend = function() {

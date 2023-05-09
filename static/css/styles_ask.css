@@ -77,8 +77,19 @@ RECORD-BUTTON STYLE
     cursor: pointer;
     border-radius: 10px;
     width: 25%;
+
+    transition: 0.5s linear;
 }
 
+.record-button:hover {
+    background: #4082f5;
+    box-shadow: 0px 4px 35px -5px #4082f5;
+    cursor: pointer;
+  }
+  
+  .record-button:focus {
+    outline: none;
+  }
 /*######################
 SUBMIT STYLE
 ######################*/
@@ -102,7 +113,21 @@ SUBMIT STYLE
 /*######################
 IMG STYLE
 ######################*/
-
 img {
     width: 300px;
+    transition: 0.5s linear;
+}
+
+/* --// VlaGan: підсвітка зображень на хінт */
+.img:hover{
+    box-shadow: 0px 4px 35px -5px #1161ed;
+}
+.img:focus{
+    outline: none;
+}
+
+
+/* //-- VlaGan: підкреслення тексту */
+.active {
+    border-bottom: 2px solid #1161ed;
 }

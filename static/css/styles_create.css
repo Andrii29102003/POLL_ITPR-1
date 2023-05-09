@@ -13,7 +13,7 @@ body, .signin {
 /*/////////////////////////////////////////////////////////////////////*/
 .create_poll_back {
   position: relative;
-  height: 105vh;/*560px;*/ /* //-- VlaGan: це розтягування форми по полі зору юзера */
+  height: 120vh;/*560px;*/ /* //-- VlaGan: це розтягування форми по полі зору юзера */
   width: 405px;
   margin: auto;
   padding: 60px 60px;
