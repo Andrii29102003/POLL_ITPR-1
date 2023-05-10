@@ -152,7 +152,7 @@ def results(people_name):
     except: 
         return f'Немає такого опитування як {passw}, перевірте коректність, або Адміністратор вже видалив його'
 
-    count=0
+    count=1
     sum_a=0
     avgMark=[]
     for key, value in scores_counted.items():
