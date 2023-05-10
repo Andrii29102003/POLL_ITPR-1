@@ -154,12 +154,13 @@ def results(people_name):
 
     count=1
     sum_a=0
-    avgMark=[]
+    avgMark=[3.0,3.0,3.0,3.0,3.0]
     for key, value in scores_counted.items():
         for key, mark in value.items():
             sum_a+=key*mark
             count+=mark
-            avgMark.append(round(sum_a/count, 1))
+        avgMark.append(round(sum_a/count, 1))
+        print("avgMark : ", avgMark) #TEST
     
     # print(avgMark)#DEL
     # print(scores_counted)
